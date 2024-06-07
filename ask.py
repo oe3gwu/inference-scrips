@@ -4,8 +4,9 @@ import json
 
 def main():
     parser = argparse.ArgumentParser(description="A simple API client for an inference service.")
-    parser.add_argument("question", help="The question to ask")
-
+    parser.add_argument("model", help="The model you want to use. It must be installed on your system.")
+    parser.add_argument("question", help="The question to ask.")
+    
     args = parser.parse_args()
 
     url = "http://inference.weninger.local:11434/api/generate"
@@ -15,7 +16,7 @@ def main():
     }
 
     data = {
-        "model": "mistral:7b",
+        "model": args.model,
         "prompt": args.question,
         "stream": False
     }
